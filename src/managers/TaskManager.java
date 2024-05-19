@@ -2,6 +2,7 @@ package managers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import status.Status;
 import tasks.Epic;
 import tasks.SubTask;
@@ -59,7 +60,7 @@ public class TaskManager {
 
 
     public void removeAllSubTask() {    //удаление всех подзадач
-        for(Epic epic : epics.values()) {
+        for (Epic epic : epics.values()) {
             epic.getSubTasks().clear();
             checkEpicStatus(epic.getId());
         }
@@ -68,18 +69,9 @@ public class TaskManager {
 
 
     public void removeAllEpic() {     //удалеине всех эпиков
-        for(Epic epic : epics.values()) {
-            int epicId = epic.getId();
-            ArrayList<Integer> tasksList = epics.get(epicId).getSubTasks();
-            for(Integer taskId : tasksList) {
-                tasks.remove(taskId);
-                subTasks.remove(taskId);
-            }
-
-        }
+        subTasks.clear();
         epics.clear();
     }
-
 
 
     public Task getTaskId(int id) {   //получение задачи по id
@@ -87,11 +79,9 @@ public class TaskManager {
     }
 
 
-
     public SubTask getSubTaskId(int id) {  //получение подзадачи по id
         return subTasks.get(id);
     }
-
 
 
     public Epic getEpicId(int id) {  //получение эпика по id
@@ -99,11 +89,9 @@ public class TaskManager {
     }
 
 
-
     public void deleteTaskId(int id) {  //удаление задачи по id
         tasks.remove(id);
     }
-
 
 
     public void deleteSubTaskId(int id) {   //удаление подзадачи по id
@@ -126,22 +114,18 @@ public class TaskManager {
     }
 
 
-
     public void deleteEpicId(int id) {  //удаление эпика по id
         ArrayList<Integer> tasksList = epics.get(id).getSubTasks();
-        for(Integer taskId : tasksList) {
-            tasks.remove(taskId);
+        for (Integer taskId : tasksList) {
             subTasks.remove(taskId);
         }
         epics.remove(id);
     }
 
 
-
     public void updateTask(Task task) {   //обнолвение задачи
         tasks.put(task.getId(), task);
     }
-
 
 
     public void updateSubTask(SubTask newSubTask) {    //обнолвение подзадачи
@@ -151,11 +135,9 @@ public class TaskManager {
     }
 
 
-
     public void updateEpic(Epic epic) {    //обнолвение эпика
         epics.put(epic.getId(), epic);
     }
-
 
 
     public void checkEpicStatus(int id) {   //проверка статуса подзадач в эпике
@@ -163,22 +145,22 @@ public class TaskManager {
         int counterNew = 0;
 
         ArrayList<Integer> subTasksList = epics.get(id).getSubTasks();
-        for(Integer taskId : subTasksList) {
-            if(subTasks.containsKey(taskId)){
-                if(subTasks.get(taskId).getStatus().equals(Status.DONE)) {
+        for (Integer taskId : subTasksList) {
+            if (subTasks.containsKey(taskId)) {
+                if (subTasks.get(taskId).getStatus().equals(Status.DONE)) {
                     counterDone++;
-                }else if(subTasks.get(taskId).getStatus().equals(Status.NEW)) {
+                } else if (subTasks.get(taskId).getStatus().equals(Status.NEW)) {
                     counterNew++;
                 }
             }
 
         }
 
-        if(subTasksList.size() == counterDone  || subTasksList.isEmpty()) {
+        if (subTasksList.size() == counterDone || subTasksList.isEmpty()) {
             epics.get(id).setStatus(Status.DONE);
-        }else if(subTasksList.size() == counterNew) {
+        } else if (subTasksList.size() == counterNew) {
             epics.get(id).setStatus(Status.NEW);
-        }else {
+        } else {
             epics.get(id).setStatus(Status.IN_PROGRESS);
         }
     }
