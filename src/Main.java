@@ -3,13 +3,13 @@ import tasks.Epic;
 import tasks.SubTask;
 import tasks.Task;
 import managers.TaskManager;
-
+import managers.Manager;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        TaskManager taskManager = new TaskManager();
+        TaskManager taskManager = Manager.getTaskManager();
 
         Task task1 = new Task("Задача 1", "Описание задачи 1");
         taskManager.createTask(task1);
@@ -48,6 +48,7 @@ public class Main {
         taskManager.removeAllTask();
         taskManager.removeAllEpic();
         taskManager.removeAllSubTask();
+
 
     }
 }
