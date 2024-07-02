@@ -1,15 +1,16 @@
+package managers;
+
+
 import tasks.Epic;
 import tasks.SubTask;
 import tasks.Task;
 import org.junit.jupiter.api.Test;
-import managers.Manager;
-import managers.TaskManager;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class InMemoryHistoryManagerTest {
-
+class InMemoryHistoryManagerTest {
     @Test
     void addHistory() {
         TaskManager taskManager = new Manager().getTaskManager();
@@ -72,4 +73,3 @@ public class InMemoryHistoryManagerTest {
 
     }
 }
-

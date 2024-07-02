@@ -1,16 +1,15 @@
+package managers;
+
+
 import status.Status;
 import tasks.Epic;
 import tasks.SubTask;
 import tasks.Task;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import managers.Manager;
-import managers.TaskManager;
 
 
 class InMemoryTaskManagerTest {
-
-
     @Test
     public void createTaskExpectedAddNewTask() {
         TaskManager taskManager = new Manager().getTaskManager();
