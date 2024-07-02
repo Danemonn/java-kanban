@@ -11,12 +11,11 @@ import managers.Manager;
 import managers.TaskManager;
 
 
-
 class InMemoryTaskManagerTest {
 
 
     @Test
-    public void createTaskExpectedAddNewTask(){
+    public void createTaskExpectedAddNewTask() {
         TaskManager taskManager = new Manager().getTaskManager();
 
         Task task1 = new Task("Task1", "Description1");
@@ -30,7 +29,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    public void taskIdConflict(){
+    public void taskIdConflict() {
         TaskManager taskManager = new Manager().getTaskManager();
         Task task5 = new Task("Task5", "Description5");
         Task task6 = new Task("Task6", "Description6");
@@ -45,7 +44,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    public void taskImmutability(){
+    public void taskImmutability() {
         TaskManager taskManager = new Manager().getTaskManager();
         Task task5 = new Task("Task5", "Description5");
 
@@ -58,7 +57,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    public void createdTaskAddByHistoryManager(){
+    public void createdTaskAddByHistoryManager() {
         TaskManager taskManager = new Manager().getTaskManager();
 
         Task task1 = new Task("Task1", "Description1");
@@ -74,7 +73,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    public void checkClearTaskHashMap(){
+    public void checkClearTaskHashMap() {
         TaskManager taskManager = new Manager().getTaskManager();
 
         Task task1 = new Task("Task1", "Description1");
@@ -91,7 +90,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    public void checkClearEpicHashMap(){
+    public void checkClearEpicHashMap() {
         TaskManager taskManager = new Manager().getTaskManager();
 
         Epic epic1 = new Epic("Epic1", "Description1");
@@ -108,7 +107,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    public void checkClearSubTaskHashMap(){
+    public void checkClearSubTaskHashMap() {
         TaskManager taskManager = new Manager().getTaskManager();
 
         Epic epic1 = new Epic("Epic1", "Description1");
@@ -128,7 +127,7 @@ class InMemoryTaskManagerTest {
     }
 
     @Test
-    public void deleteTaskById_notExistent(){
+    public void deleteTaskById_notExistent() {
         TaskManager taskManager = new Manager().getTaskManager();
         Task task1 = new Task("Task1", "Description1");
 
@@ -141,7 +140,7 @@ class InMemoryTaskManagerTest {
 
 
     @Test
-    public void updateTaskEquals(){
+    public void updateTaskEquals() {
         TaskManager taskManager = new Manager().getTaskManager();
         Task task1 = new Task("Task1", "Description1");
 
@@ -152,7 +151,7 @@ class InMemoryTaskManagerTest {
 
 
     @Test
-    public void updateSubTaskEquals(){
+    public void updateSubTaskEquals() {
         TaskManager taskManager = new Manager().getTaskManager();
         Epic epic = new Epic("Эпик 1", "Описание эпика 1");
 
@@ -172,7 +171,7 @@ class InMemoryTaskManagerTest {
 
 
     @Test
-    public  void updateEpicEquals(){
+    public void updateEpicEquals() {
         TaskManager taskManager = new Manager().getTaskManager();
         Epic epic = new Epic("Epic1", "Description1");
         taskManager.createEpic(epic);

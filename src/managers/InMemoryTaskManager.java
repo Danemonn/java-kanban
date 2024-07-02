@@ -4,14 +4,12 @@ import status.Status;
 import tasks.Epic;
 import tasks.SubTask;
 import tasks.Task;
-import managers.HistoryManager;
-import managers.Manager;
-import managers.TaskManager;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 public class InMemoryTaskManager implements TaskManager {
     private int idCounter = 0;
