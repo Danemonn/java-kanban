@@ -85,7 +85,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public Task getTaskId(int id) {   //получение задачи по id
-        if(tasks.get(id) != null){
+        if (tasks.get(id) != null) {
             inMemoryHistoryManager.addHistory(tasks.get(id));
         }
         return tasks.get(id);
@@ -93,7 +93,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public SubTask getSubTaskId(int id) {  //получение подзадачи по id
-        if(subTasks.get(id) != null){
+        if (subTasks.get(id) != null) {
             inMemoryHistoryManager.addHistory(subTasks.get(id));
         }
         return subTasks.get(id);
@@ -101,7 +101,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public Epic getEpicId(int id) {  //получение эпика по id
-        if(epics.get(id) != null){
+        if (epics.get(id) != null) {
             inMemoryHistoryManager.addHistory(epics.get(id));
         }
         return epics.get(id);
@@ -184,7 +184,7 @@ public class InMemoryTaskManager implements TaskManager {
 
         }
 
-        if (subTasksList.size() == counterDone  || subTasksList.isEmpty()) {
+        if (subTasksList.size() == counterDone || subTasksList.isEmpty()) {
             epics.get(id).setStatus(Status.DONE);
         } else if (subTasksList.size() == counterNew) {
             epics.get(id).setStatus(Status.NEW);
@@ -194,7 +194,9 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public List<Task> getHistory() { return inMemoryHistoryManager.getHistory(); }
+    public List<Task> getHistory() {
+        return inMemoryHistoryManager.getHistory();
+    }
 }
 
 
