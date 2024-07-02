@@ -1,5 +1,3 @@
-package test;
-
 import tasks.Epic;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
