@@ -26,12 +26,12 @@ public class Main {
         SubTask subTask2 = new SubTask("Подзадача 2", "Описание подзадачи 2", 3);
         taskManager.createSubTask(subTask2);
 
-        Task task3 = new Task(task1.getId(), "Обновленная задача 1", "Обновление описания задачи 1");
+        Task task3 = new Task(task1.getId(), "Обновленная задачи 1", "Обновление описания задачи 1", Status.IN_PROGRESS);
         taskManager.updateTask(task3);
-        Epic epic3 = new Epic(epic1.getId(), "Обновленный эпик 1", "Обновление описания эпика 1", epic1.getSubTasks());
+        Epic epic3 = new Epic(epic1.getId(), "Обновленная эпика 1", "Обновление описания эпика 1", Status.IN_PROGRESS, epic1.getSubTasks());
         taskManager.updateEpic(epic3);
-        SubTask subTask3 = new SubTask(subTask1.getId(), "Обновленная подзадача 1", "Обновление описания подзадачи 1", subTask1.getEpicId());
-        taskManager.updateSubTask(subTask3);
+        SubTask subTask4 = new SubTask(subTask1.getId(), "Обновленная подзадача 1", "Обновление описания подзадачи 1", Status.IN_PROGRESS, subTask1.getEpicId());
+        taskManager.updateSubTask(subTask4);
 
         taskManager.getTaskId(task1.getId());
         taskManager.getEpicId(epic1.getId());
@@ -51,4 +51,6 @@ public class Main {
 
 
     }
+
+
 }

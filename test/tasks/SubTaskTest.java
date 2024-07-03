@@ -1,15 +1,13 @@
-package test;
+package tasks;
 
-import tasks.Epic;
-import tasks.SubTask;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+
 import managers.Manager;
 import managers.TaskManager;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 
 class SubTaskTest {
-
-
     @Test
     public void subTaskEqualToEachOther() {
         TaskManager taskManager = new Manager().getTaskManager();
