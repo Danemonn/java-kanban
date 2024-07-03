@@ -1,7 +1,6 @@
 package managers;
 
 
-
 public class Manager {
 
     public static TaskManager getTaskManager() {

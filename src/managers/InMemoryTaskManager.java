@@ -86,7 +86,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Task getTaskId(int id) {   //получение задачи по id
         if (tasks.get(id) != null) {
-            inMemoryHistoryManager.addHistory(tasks.get(id));
+            inMemoryHistoryManager.add(tasks.get(id));
         }
         return tasks.get(id);
     }
@@ -94,7 +94,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public SubTask getSubTaskId(int id) {  //получение подзадачи по id
         if (subTasks.get(id) != null) {
-            inMemoryHistoryManager.addHistory(subTasks.get(id));
+            inMemoryHistoryManager.add(subTasks.get(id));
         }
         return subTasks.get(id);
     }
@@ -102,7 +102,7 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public Epic getEpicId(int id) {  //получение эпика по id
         if (epics.get(id) != null) {
-            inMemoryHistoryManager.addHistory(epics.get(id));
+            inMemoryHistoryManager.add(epics.get(id));
         }
         return epics.get(id);
     }
@@ -142,7 +142,6 @@ public class InMemoryTaskManager implements TaskManager {
         for (Integer taskId : tasksList) {
             inMemoryHistoryManager.remove(taskId);
 
-            tasks.remove(taskId);
 
             subTasks.remove(taskId);
         }

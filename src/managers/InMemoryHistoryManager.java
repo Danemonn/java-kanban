@@ -10,16 +10,16 @@ import java.util.Map;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
-    final LinkedListCustom history = new LinkedListCustom();
+    private final LinkedListCustom history = new LinkedListCustom();
 
     @Override
-    public void addHistory(Task task) {
+    public void add(Task task) {
         history.linkLast(task);
     }
 
     @Override
     public void remove(int id) {
-        history.removeNode(id);
+        history.removeNode(history.getNode(id));
     }
 
 
@@ -45,19 +45,51 @@ public class InMemoryHistoryManager implements HistoryManager {
 
         final Map<Integer, Node<Task>> historyMap = new HashMap<>();
 
+        private Node<Task> head;
+        private Node<Task> tail;
+
+
         public void linkLast(Task task) {
             if (historyMap.containsKey(task.getId())) {
                 historyMap.remove(task.getId());
             }
-
-            historyMap.put(task.getId(), new Node<>(null, task, null));
-
+            final Node<Task> oldTail = tail;
+            final Node<Task> newNode = new Node<>(oldTail, task, null);
+            tail = newNode;
+            if (oldTail == null) {
+                head = newNode;
+            } else {
+                oldTail.next = newNode;
+            }
+            historyMap.put(task.getId(), newNode);
         }
 
-        public void removeNode(int id) {
-            historyMap.remove(id);
+
+        private void removeNode(Node<Task> node) {
+            if (node != null) {
+                final Node<Task> prev = node.prev;
+                final Node<Task> next = node.next;
+                if (prev == null) {
+                    head = next;
+                } else {
+                    prev.next = next;
+                    node.prev = null;
+                }
+                if (next == null) {
+                    tail = prev;
+                } else {
+                    next.prev = prev;
+                    node.next = null;
+                }
+                if (historyMap.containsKey(node.task.getId())) {
+                    historyMap.remove(node.task.getId());
+                }
+            }
         }
 
+        private Node getNode(int id) {
+            return historyMap.get(id);
+        }
 
         public List<Task> getTasks() {
             List<Task> newListTasks = new ArrayList<>();
@@ -67,6 +99,7 @@ public class InMemoryHistoryManager implements HistoryManager {
 
             return newListTasks;
         }
+
     }
 
 }
